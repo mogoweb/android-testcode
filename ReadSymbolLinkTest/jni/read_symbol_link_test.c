@@ -14,12 +14,26 @@
  * limitations under the License.
  *
  */
+#include <unistd.h>
 #include <string.h>
 #include <jni.h>
+
+#include <android/log.h>
+
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "read-link-test", __VA_ARGS__))
+#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "read-link-test", __VA_ARGS__))
 
 void
 Java_com_mogoweb_test_MainActivity_testReadSymbolLink( JNIEnv* env,
                                                   jobject thiz )
 {
-
+	char bin_dir[PATH_MAX + 1];
+	int bin_dir_size = readlink("proc/self/exe", bin_dir, PATH_MAX);
+	if (bin_dir_size < 0 || bin_dir_size > PATH_MAX) {
+		LOGW("readlink failed.");
+		return;
+	}
+	bin_dir[bin_dir_size] = 0;
+	LOGI("readlink success. dir: %s", bin_dir);
+	return;
 }

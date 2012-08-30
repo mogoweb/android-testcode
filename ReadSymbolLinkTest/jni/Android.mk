@@ -17,6 +17,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := read-symbol-link
-LOCAL_SRC_FILES := read_symbo_link_test.c
+LOCAL_LDLIBS    := -llog
+LOCAL_SRC_FILES := read_symbol_link_test.c
 
 include $(BUILD_SHARED_LIBRARY)
