@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RemoteServiceComplex</string>
+    <item type="id" name="app_notification_id"/>
+</resources>
